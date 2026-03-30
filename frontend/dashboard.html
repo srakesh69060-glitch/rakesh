@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="brand">Rural Emergency Response</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Hospital</a>
+                <a href="admin.html">Admin</a>
+                <a href="map.html">Live Map</a>
+                <a href="emergency.html">Emergency</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div>
+                <span class="badge">Hospital Dashboard</span>
+                <h1>Monitor incoming emergencies and assign resources.</h1>
+                <p>Track requests by district, update statuses, and close cases with reports.</p>
+            </div>
+            <div class="card">
+                <h3>Quick Actions</h3>
+                <p>Assign ambulances and update patient status in real time.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="form-card">
+                <h2>Incoming Emergencies</h2>
+                <div class="inline-controls">
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="assigned">Assigned</option>
+                        <option value="enroute">Enroute</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                    <select id="districtFilter"></select>
+                    <button id="refreshEmergencies">Refresh</button>
+                </div>
+                <div class="status" id="dashboardStatus"></div>
+                <div class="list" id="emergencyList"></div>
+            </div>
+        </section>
+
+        <section class="section grid">
+            <div class="form-card">
+                <h2>Assign Resources</h2>
+                <form id="assignForm">
+                    <label>Emergency ID</label>
+                    <input type="number" name="emergency_id" required />
+
+                    <label>Ambulance ID (optional)</label>
+                    <input type="number" name="ambulance_id" />
+
+                    <label>Hospital ID (optional)</label>
+                    <input type="number" name="hospital_id" />
+
+                    <button type="submit">Assign</button>
+                    <p class="status" id="assignStatus"></p>
+                </form>
+            </div>
+
+            <div class="form-card">
+                <h2>Update Status</h2>
+                <form id="statusForm">
+                    <label>Emergency ID</label>
+                    <input type="number" name="emergency_id" required />
+
+                    <label>Status</label>
+                    <select name="status" required>
+                        <option value="pending">Pending</option>
+                        <option value="assigned">Assigned</option>
+                        <option value="enroute">Enroute</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+
+                    <label>Final Report (optional)</label>
+                    <textarea name="report_text" placeholder="Outcome notes and services delivered."></textarea>
+
+                    <button type="submit">Update</button>
+                    <p class="status" id="statusUpdate"></p>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Rural Emergency Response</h3>
+                <p>Reliable, real-time emergency coordination for rural communities.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="admin.html">Admin Panel</a><br />
+                <a href="map.html">Live Map</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>Helpline: 1800-000-112</p>
+                <p>Email: support@ruralresponse.org</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

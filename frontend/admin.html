@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="brand">Rural Emergency Response</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="admin.html">Admin</a>
+                <a href="dashboard.html">Hospital</a>
+                <a href="map.html">Live Map</a>
+                <a href="emergency.html">Emergency</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div>
+                <span class="badge">Admin Panel</span>
+                <h1>Manage hospitals, ambulances, and district readiness.</h1>
+                <p>Keep the response network up to date for faster dispatch.</p>
+            </div>
+            <div class="card">
+                <h3>Admin Actions</h3>
+                <p>Add new hospitals and ambulance drivers in seconds.</p>
+            </div>
+        </section>
+
+        <section class="section grid">
+            <div class="form-card">
+                <h2>Add Hospital</h2>
+                <form id="hospitalForm">
+                    <label>Name</label>
+                    <input type="text" name="name" required />
+
+                    <label>District</label>
+                    <select name="district" id="hospitalDistrict" required></select>
+
+                    <label>Location (lat,lng)</label>
+                    <input type="text" name="location" required />
+
+                    <label>Contact</label>
+                    <input type="text" name="contact" required />
+
+                    <button type="submit">Create Hospital</button>
+                    <p class="status" id="hospitalStatus"></p>
+                </form>
+            </div>
+
+            <div class="form-card">
+                <h2>Add Ambulance</h2>
+                <form id="ambulanceForm">
+                    <label>Driver Name</label>
+                    <input type="text" name="driver_name" required />
+
+                    <label>Current Lat</label>
+                    <input type="number" step="0.000001" name="current_lat" required />
+
+                    <label>Current Lng</label>
+                    <input type="number" step="0.000001" name="current_lng" required />
+
+                    <label>Status</label>
+                    <select name="status">
+                        <option value="available">Available</option>
+                        <option value="busy">Busy</option>
+                    </select>
+
+                    <button type="submit">Create Ambulance</button>
+                    <p class="status" id="ambulanceStatus"></p>
+                </form>
+            </div>
+        </section>
+
+        <section class="section grid">
+            <div class="card">
+                <h2>Current Hospitals</h2>
+                <div class="list" id="hospitalList"></div>
+            </div>
+            <div class="card">
+                <h2>Current Ambulances</h2>
+                <div class="list" id="ambulanceList"></div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Rural Emergency Response</h3>
+                <p>Reliable, real-time emergency coordination for rural communities.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="dashboard.html">Hospital Dashboard</a><br />
+                <a href="map.html">Live Map</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>Helpline: 1800-000-112</p>
+                <p>Email: support@ruralresponse.org</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

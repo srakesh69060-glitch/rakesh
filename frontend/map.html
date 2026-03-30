@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Ambulance Tracking</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="brand">Rural Emergency Response</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="driver.html">Driver Tracking</a>
+                <a href="dashboard.html">Hospital</a>
+                <a href="admin.html">Admin</a>
+                <a href="map.html">Live Map</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div>
+                <span class="badge">Live Dispatch Center</span>
+                <h1>Layer-by-layer flow of every emergency in the network.</h1>
+                <p>
+                    Track ambulances, hospitals, and emergency locations in real time.
+                    The map refreshes every 5 seconds with status updates.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn primary" href="emergency.html">Request Emergency</a>
+                    <a class="btn dark" href="dashboard.html">Hospital Dashboard</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Map Status</h3>
+                <p id="mapStatus">Waiting for updates...</p>
+                <p class="status" id="mapLastUpdated">Last sync: --</p>
+                <p class="status">Map powered by OpenStreetMap (no API key needed).</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>Layer-by-Layer Response Flow</h2>
+            </div>
+            <div class="flow">
+                <div class="flow-step">
+                    <span class="chip">Layer 1</span>
+                    <h3>Emergency Intake</h3>
+                    <p>Caller submits patient details, district, and GPS location.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="chip">Layer 2</span>
+                    <h3>Auto-Dispatch</h3>
+                    <p>System suggests nearest hospital and assigns ambulance.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="chip">Layer 3</span>
+                    <h3>Live Tracking</h3>
+                    <p>Ambulance GPS updates every 5 seconds on the live map.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="chip">Layer 4</span>
+                    <h3>Final Report</h3>
+                    <p>Hospital closes the case with patient status and outcome.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="map-shell">
+                <div class="map-overlay">
+                    <div class="map-legend">
+                        <div class="legend-item"><span class="legend-dot dot-blue"></span>Ambulance</div>
+                        <div class="legend-item"><span class="legend-dot dot-green"></span>Hospital</div>
+                        <div class="legend-item"><span class="legend-dot dot-red"></span>Emergency</div>
+                    </div>
+                    <div class="map-actions">
+                        <button type="button" id="refreshNow" class="secondary">Refresh Now</button>
+                        <a href="admin.html">Manage Fleet</a>
+                        <a href="dashboard.html">Update Status</a>
+                    </div>
+                </div>
+                <div id="map" class="map"></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>Live Operations Layers</h2>
+            </div>
+            <div class="layer-grid">
+                <div class="layer-card">
+                    <h4>Layer A: Patient Request</h4>
+                    <p>Emergency details captured with verified district.</p>
+                </div>
+                <div class="layer-card">
+                    <h4>Layer B: Hospital Match</h4>
+                    <p>Suggested hospital is displayed instantly for coordinators.</p>
+                </div>
+                <div class="layer-card">
+                    <h4>Layer C: Fleet Movement</h4>
+                    <p>Ambulance location updates to prevent delays.</p>
+                </div>
+                <div class="layer-card">
+                    <h4>Layer D: Case Closure</h4>
+                    <p>Final report filed for medical and service review.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Rural Emergency Response</h3>
+                <p>Reliable, real-time emergency coordination for rural communities.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="emergency.html">Request Emergency</a><br />
+                <a href="dashboard.html">Hospital Dashboard</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>Helpline: 1800-000-112</p>
+                <p>Email: support@ruralresponse.org</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html>

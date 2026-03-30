@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="brand">Rural Emergency Response</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="map.html">Live Map</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div>
+                <span class="badge">Contact</span>
+                <h1>We are here to help.</h1>
+                <p>Reach out for partnership, support, or district onboarding.</p>
+            </div>
+            <div class="card">
+                <h3>Helpline</h3>
+                <p>1800-000-112 (24/7)</p>
+                <h3>Email</h3>
+                <p>support@ruralresponse.org</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="form-card">
+                <h2>Send a Message</h2>
+                <label>Name</label>
+                <input type="text" placeholder="Your name" />
+                <label>Email</label>
+                <input type="email" placeholder="you@example.com" />
+                <label>Message</label>
+                <textarea placeholder="Tell us how we can help."></textarea>
+                <button type="button" id="contactSend">Send Message</button>
+                <p class="status" id="contactStatus">This demo form does not submit data.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Rural Emergency Response</h3>
+                <p>Reliable, real-time emergency coordination for rural communities.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="emergency.html">Request Emergency</a><br />
+                <a href="map.html">Live Map</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>Helpline: 1800-000-112</p>
+                <p>Email: support@ruralresponse.org</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const contactSend = document.getElementById("contactSend");
+        const contactStatus = document.getElementById("contactStatus");
+        contactSend.addEventListener("click", () => {
+            contactStatus.textContent = "Message captured. Our team will contact you shortly.";
+        });
+    </script>
+</body>
+</html>

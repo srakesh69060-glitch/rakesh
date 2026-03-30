@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ambulance Live Tracking</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="brand">Rural Emergency Response</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="driver.html">Driver Tracking</a>
+                <a href="dashboard.html">Hospital</a>
+                <a href="map.html">Live Map</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div>
+                <span class="badge">Ambulance GPS</span>
+                <h1>Live GPS tracking for ambulance drivers.</h1>
+                <p>Start tracking to send accurate location updates every few seconds.</p>
+            </div>
+            <div class="card">
+                <h3>Requirements</h3>
+                <p>Allow location access on this device for accurate GPS updates.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="form-card">
+                <h2>Start Tracking</h2>
+                <label>Ambulance ID</label>
+                <input type="number" id="ambulanceId" placeholder="1" />
+
+                <label>Status</label>
+                <select id="ambulanceStatus">
+                    <option value="available">Available</option>
+                    <option value="busy">Busy</option>
+                </select>
+
+                <div class="inline-controls">
+                    <button type="button" id="startTracking">Start Tracking</button>
+                    <button type="button" id="stopTracking" class="secondary">Stop Tracking</button>
+                </div>
+
+                <div class="location-output" id="driverLocation">Waiting for GPS updates...</div>
+                <p class="status" id="driverStatus"></p>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/driver.js"></script>
+</body>
+</html>

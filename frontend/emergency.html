@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emergency Request</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="brand">Rural Emergency Response</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="map.html">Live Map</a>
+                <a href="dashboard.html">Hospital</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div>
+                <span class="badge">Emergency Request</span>
+                <h1>Report an emergency with live location.</h1>
+                <p>Provide patient details and the system will auto-suggest the nearest hospital.</p>
+            </div>
+            <div class="card">
+                <h3>Helpline</h3>
+                <p>Call 1800-000-112 for immediate assistance.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="grid">
+                <div class="form-card">
+                    <h2>Request Emergency Help</h2>
+                    <div class="notice">Your GPS location is used to dispatch the nearest ambulance.</div>
+                    <form id="emergencyForm">
+                        <label>Patient Name</label>
+                        <input type="text" name="patient_name" required />
+
+                        <label>Patient Phone</label>
+                        <input type="text" name="patient_phone" required />
+
+                        <label>District</label>
+                        <select name="district" id="district" required></select>
+
+                        <label>Emergency Type</label>
+                        <select name="emergency_type" required>
+                            <option value="Accident">Accident</option>
+                            <option value="Heart attack">Heart attack</option>
+                            <option value="Pregnancy emergency">Pregnancy emergency</option>
+                            <option value="Trauma">Trauma</option>
+                        </select>
+
+                        <label>Location (auto-filled)</label>
+                        <input type="text" name="location" id="location" readonly />
+                        <button type="button" id="getLocation">Get Current Location</button>
+                        <div class="location-output" id="locationOutput">Location not captured yet.</div>
+                        <a id="locationLink" class="btn light" href="#" target="_blank" rel="noopener">Open in Google Maps</a>
+
+                        <label>Notes</label>
+                        <textarea name="notes" placeholder="Any additional info about the patient or location."></textarea>
+
+                        <button type="submit">Send Emergency</button>
+                        <p class="status" id="emergencyStatus"></p>
+                    </form>
+                </div>
+
+                <div class="form-card">
+                    <h2>Check Emergency Status</h2>
+                    <form id="statusLookupForm">
+                        <label>Emergency ID</label>
+                        <input type="number" name="emergency_id" required />
+                        <button type="submit">Check Status</button>
+                    </form>
+                    <div class="status" id="statusResult">Status details will appear here.</div>
+                </div>
+
+                <div class="form-card">
+                    <h2>Live Patient Tracking</h2>
+                    <label>Emergency ID</label>
+                    <input type="number" id="patientEmergencyId" placeholder="Enter emergency ID" />
+                    <div class="inline-controls">
+                        <button type="button" id="startPatientTracking">Start Tracking</button>
+                        <button type="button" id="stopPatientTracking" class="secondary">Stop Tracking</button>
+                    </div>
+                    <div class="location-output" id="patientLocation">Waiting for GPS updates...</div>
+                    <p class="status" id="patientTrackingStatus"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Rural Emergency Response</h3>
+                <p>Reliable, real-time emergency coordination for rural communities.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="dashboard.html">Hospital Dashboard</a><br />
+                <a href="map.html">Live Map</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>Helpline: 1800-000-112</p>
+                <p>Email: support@ruralresponse.org</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/emergency.js"></script>
+</body>
+</html>
