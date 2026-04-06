@@ -7,6 +7,18 @@ emergency_bp = Blueprint("emergency", __name__)
 
 ALLOWED_TYPES = {"Accident", "Heart attack", "Pregnancy emergency", "Trauma"}
 ALLOWED_STATUS = {"pending", "assigned", "enroute", "completed", "cancelled"}
+DEFAULT_DISTRICTS = [
+    "chennai",
+    "vellore",
+    "dindugal",
+    "erode",
+    "ambur",
+    "pondiycherry",
+    "ranipet",
+    "kanchipuram",
+    "tirupattur",
+    "coimbatore",
+]
 INDIA_BOUNDS = {
     "min_lat": 6.0,
     "max_lat": 37.5,
@@ -34,10 +46,20 @@ def is_in_india(lat, lng):
     )
 
 
+def get_districts():
+    try:
+        rows = query_all("SELECT name FROM districts ORDER BY name")
+        names = [row["name"] for row in rows if row.get("name")]
+        if names:
+            return names
+    except Exception:
+        pass
+    return DEFAULT_DISTRICTS
+
+
 @emergency_bp.get("/districts")
 def list_districts():
-    rows = query_all("SELECT name FROM districts ORDER BY name")
-    return jsonify({"districts": [row["name"] for row in rows]})
+    return jsonify({"districts": get_districts()})
 
 
 @emergency_bp.post("/emergency")
@@ -72,8 +94,7 @@ def create_emergency():
     if not is_in_india(coords[0], coords[1]):
         return jsonify({"error": "Location must be within India bounds."}), 400
 
-    district_row = query_one("SELECT name FROM districts WHERE name = %s", (district,))
-    if not district_row:
+    if district not in set(get_districts()):
         return jsonify({"error": "Invalid district"}), 400
 
     hospital = query_one(
