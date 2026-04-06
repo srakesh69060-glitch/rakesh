@@ -8,3 +8,6 @@ class Config:
     DB_NAME = os.getenv("DB_NAME", "emergency_response")
     DB_PORT = int(os.getenv("DB_PORT", "3306"))
     SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-change-me")
+
+
+
