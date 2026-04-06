@@ -1,8 +1,7 @@
-﻿services:
+services:
   - type: web
     name: emergency-response-system
-    env: python
-    plan: free
+    runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: cd backend && gunicorn "app:create_app()" --bind 0.0.0.0:$PORT --workers 2 --timeout 120
     envVars:
@@ -11,7 +10,7 @@
       - key: DB_HOST
         sync: false
       - key: DB_PORT
-        value: "3306"
+        sync: false
       - key: DB_USER
         sync: false
       - key: DB_PASSWORD
