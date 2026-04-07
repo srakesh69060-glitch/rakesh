@@ -6,7 +6,7 @@
     <title>Emergency Request</title>
     <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body class="emergency-page">
     <header>
         <div class="navbar">
             <div class="brand">Rural Emergency Response</div>
@@ -21,7 +21,7 @@
     </header>
 
     <div class="container">
-        <section class="hero">
+        <section class="hero emergency-hero">
             <div>
                 <span class="badge">Emergency Request</span>
                 <h1>Report an emergency with live location.</h1>
@@ -30,6 +30,23 @@
             <div class="card">
                 <h3>Helpline</h3>
                 <p>Call 1800-000-112 for immediate assistance.</p>
+            </div>
+        </section>
+
+        <section class="section emergency-highlights">
+            <div class="stats emergency-stats">
+                <div class="stat">
+                    <span>Response Goal</span>
+                    <strong>&lt; 12 mins</strong>
+                </div>
+                <div class="stat">
+                    <span>Coverage</span>
+                    <strong>10 Districts</strong>
+                </div>
+                <div class="stat">
+                    <span>Dispatch Mode</span>
+                    <strong>Live GPS</strong>
+                </div>
             </div>
         </section>
 
@@ -58,14 +75,14 @@
 
                         <label>Location (auto-filled)</label>
                         <input type="text" name="location" id="location" readonly />
-                        <button type="button" id="getLocation">Get Current Location</button>
+                        <button type="button" id="getLocation" class="dark">Get Current Location</button>
                         <div class="location-output" id="locationOutput">Location not captured yet.</div>
                         <a id="locationLink" class="btn light" href="#" target="_blank" rel="noopener">Open in Google Maps</a>
 
                         <label>Notes</label>
                         <textarea name="notes" placeholder="Any additional info about the patient or location."></textarea>
 
-                        <button type="submit">Send Emergency</button>
+                        <button type="submit" class="primary emergency-submit">Send Emergency</button>
                         <p class="status" id="emergencyStatus"></p>
                     </form>
                 </div>

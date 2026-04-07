@@ -1,4 +1,5 @@
 ﻿from flask import Blueprint, jsonify, request
+from mysql.connector import Error as MySQLError
 
 from models import execute, query_all, query_one
 
@@ -97,28 +98,38 @@ def create_emergency():
     if district not in set(get_districts()):
         return jsonify({"error": "Invalid district"}), 400
 
-    hospital = query_one(
-        "SELECT id, name, location, contact FROM hospitals WHERE district = %s ORDER BY id LIMIT 1",
-        (district,),
-    )
+    try:
+        hospital = query_one(
+            "SELECT id, name, location, contact FROM hospitals WHERE district = %s ORDER BY id LIMIT 1",
+            (district,),
+        )
 
-    emergency_id = execute(
-        """
-        INSERT INTO emergencies (
-            patient_name, patient_phone, district, location, emergency_type, notes, status, hospital_id
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-        """,
-        (
-            patient_name,
-            patient_phone,
-            district,
-            location,
-            emergency_type,
-            notes,
-            "pending",
-            hospital["id"] if hospital else None,
-        ),
-    )
+        emergency_id = execute(
+            """
+            INSERT INTO emergencies (
+                patient_name, patient_phone, district, location, emergency_type, notes, status, hospital_id
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """,
+            (
+                patient_name,
+                patient_phone,
+                district,
+                location,
+                emergency_type,
+                notes,
+                "pending",
+                hospital["id"] if hospital else None,
+            ),
+        )
+    except MySQLError:
+        return (
+            jsonify(
+                {
+                    "error": "Database is not ready. Please verify Railway tables and Render DB environment variables."
+                }
+            ),
+            503,
+        )
 
     return (
         jsonify(

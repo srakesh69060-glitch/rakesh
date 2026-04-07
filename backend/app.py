@@ -2,6 +2,7 @@
 
 from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
+from mysql.connector import Error as MySQLError
 
 from routes.auth import auth_bp
 from routes.emergency import emergency_bp
@@ -33,9 +34,18 @@ def create_app():
     def not_found(_):
         return jsonify({"error": "Not Found"}), 404
 
+    @app.errorhandler(MySQLError)
+    def mysql_error(_):
+        return (
+            jsonify({
+                "error": "Database connection issue. Verify Render DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, and DB_NAME."
+            }),
+            503,
+        )
+
     @app.errorhandler(500)
     def server_error(_):
-        return jsonify({"error": "Internal Server Error"}), 500
+        return jsonify({"error": "Unexpected server error. Please try again."}), 500
 
     return app
 
